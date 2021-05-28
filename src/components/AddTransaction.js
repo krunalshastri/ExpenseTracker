@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { v4 as uuid } from 'uuid';
+import { GlobalContext } from '../context/GlobalState';
 
 export const AddTransaction = () => {
   const [text, setText] = useState('');
-  const [amount, setAmount] = useState('');
+  let [amount, setAmount] = useState('');
+  const { addTransaction } = useContext(GlobalContext);
 
   function handleChange(e) {
-    console.log(e.target.value);
     if (e.target.type === 'text') setText(e.target.value);
     else if (e.target.type === 'number') setAmount(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    const id = uuid();
+    amount = Number(amount);
+    addTransaction({ id, text, amount });
   }
 
   return (

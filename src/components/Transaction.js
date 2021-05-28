@@ -8,8 +8,6 @@ const Transaction = ({ trans }) => {
     deleteTransaction(id);
   }
 
-  console.log(trans);
-
   return (
     <div>
       <li className={trans.amount < 0 ? 'minus' : 'plus'}>
