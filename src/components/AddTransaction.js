@@ -31,6 +31,7 @@ export const AddTransaction = () => {
             value={text}
             placeholder='Enter text...'
             onChange={handleChange}
+            autoComplete='off'
           />
         </div>
         <div className='form-control'>

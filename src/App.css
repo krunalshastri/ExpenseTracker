@@ -161,3 +161,10 @@ input[type='number'] {
   background-color: #c25447;
   color: #fff;
 }
+
+@media (max-width: 700px) {
+  .container {
+    margin: 2rem 0;
+    width: 15rem;
+  }
+}
