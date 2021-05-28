@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 const Transaction = ({ trans }) => {
+  const { deleteTransaction } = useContext(GlobalContext);
+
+  function handleClick(id) {
+    deleteTransaction(id);
+  }
+
+  console.log(trans);
+
   return (
     <div>
       <li className={trans.amount < 0 ? 'minus' : 'plus'}>
@@ -9,7 +18,9 @@ const Transaction = ({ trans }) => {
           {trans.amount >= 0 && '+'}
           {trans.amount.toFixed(2)}₹
         </span>
-        <button className='delete-btn'>x</button>
+        <button className='delete-btn' onClick={() => handleClick(trans.id)}>
+          x
+        </button>
       </li>
     </div>
   );
