@@ -1,6 +1,7 @@
 const express = require('express');
 const dotEnv = require('dotenv').config();
 const mongoose = require('mongoose');
+const { findByIdAndDelete } = require('./Models/transactionModel');
 const Transaction = require('./Models/transactionModel');
 
 const app = express();
@@ -30,6 +31,18 @@ app.post('/', async (req, res) => {
     const newTrans = new Transaction({ text, amount });
     await newTrans.save();
     res.json('Transaction Added!');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error!');
+  }
+});
+
+app.delete('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    console.log(id);
+    const transactions = await Transaction.findByIdAndDelete(id);
+    res.json(transactions);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error!');
