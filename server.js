@@ -13,12 +13,17 @@ mongoose.connect(process.env.ATLAS_URL, {
   useFindAndModify: false,
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello Darlings!');
+app.get('/', async (req, res) => {
+  try {
+    const transactions = await Transaction.find();
+    res.json(transactions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error!');
+  }
 });
 
 app.post('/', async (req, res) => {
-  console.log(req.body);
   const { text, amount } = req.body;
 
   try {
