@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import Reducer from './Reducer';
 //Initial state
 const initialState = {
-  transactions: [],
+  transactions: JSON.parse(localStorage.getItem('transactions')) || [],
 };
 
 //create context
@@ -19,6 +19,9 @@ export const GlobalProvider = ({ children }) => {
   function addTransaction(trans) {
     dispatch({ type: 'ADD_TRANS', payload: trans });
   }
+  function clearAll() {
+    dispatch({ type: 'CLEAR_ALL' });
+  }
 
   return (
     <GlobalContext.Provider
@@ -26,6 +29,7 @@ export const GlobalProvider = ({ children }) => {
         transactions: state.transactions,
         deleteTransaction,
         addTransaction,
+        clearAll,
       }}
     >
       {children}

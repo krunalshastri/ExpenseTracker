@@ -140,3 +140,24 @@ input[type='number'] {
 .delete-btn:focus {
   outline: 0;
 }
+
+.clear {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+/* 
+.clear > div {
+  flex: 1;
+} */
+
+.clear button {
+  align-items: center;
+  padding-bottom: 0;
+  margin: 40px 0 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 0;
+  background-color: #c25447;
+  color: #fff;
+}
