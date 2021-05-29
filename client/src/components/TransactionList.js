@@ -7,7 +7,7 @@ export const TransactionList = () => {
 
   useEffect(() => {
     getAll();
-  }, [getAll]);
+  }, []);
 
   return (
     <div>

@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }) => {
   //All actions
   async function getAll() {
     try {
-      const res = await axios.get('http://localhost:5000/');
+      const res = await axios.get('http://localhost:5000/api/');
       dispatch({ type: 'GET_ALL', payload: res.data });
     } catch (err) {
       console.error(err.message);
@@ -26,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
   }
   async function deleteTransaction(id) {
     try {
-      const res = await axios.delete(`http://localhost:5000/${id}`);
+      const res = await axios.delete(`http://localhost:5000/api/${id}`);
       dispatch({ type: 'DELETE_TRANS', payload: res.data._id });
     } catch (err) {
       console.error(err.message);
@@ -34,14 +34,19 @@ export const GlobalProvider = ({ children }) => {
   }
   async function addTransaction(trans) {
     try {
-      const res = await axios.post('http://localhost:5000/', trans);
+      const res = await axios.post('http://localhost:5000/api/', trans);
       dispatch({ type: 'ADD_TRANS', payload: res.data });
     } catch (err) {
       console.error(err.message);
     }
   }
-  function clearAll() {
-    dispatch({ type: 'CLEAR_ALL' });
+  async function clearAll() {
+    try {
+      await axios.delete('http://localhost:5000/api/transactions/deleteAll');
+      dispatch({ type: 'CLEAR_ALL' });
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 
   return (

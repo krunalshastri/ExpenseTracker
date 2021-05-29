@@ -13,13 +13,13 @@ export default (state, action) => {
         transactions: addedTransactions,
       };
     case 'DELETE_TRANS':
-      const deletedTransactions = state.transactions.filter(
-        (trans) => trans.id !== action.payload
+      const remTransactions = state.transactions.filter(
+        (trans) => trans._id !== action.payload
       );
       // localStorage.setItem('transactions', JSON.stringify(deletedTransactions));
       return {
         ...state,
-        transactions: deletedTransactions,
+        transactions: remTransactions,
       };
     case 'CLEAR_ALL':
       // localStorage.removeItem('transactions');
