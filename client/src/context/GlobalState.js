@@ -1,8 +1,11 @@
 import React, { createContext, useReducer } from 'react';
+import axios from 'axios';
 import Reducer from './Reducer';
+
+//JSON.parse(localStorage.getItem('transactions')) ||
 //Initial state
 const initialState = {
-  transactions: JSON.parse(localStorage.getItem('transactions')) || [],
+  transactions: [],
 };
 
 //create context
@@ -13,11 +16,24 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   //All actions
+  async function getAll() {
+    try {
+      const res = await axios.get('http://localhost:5000/');
+      dispatch({ type: 'GET_ALL', payload: res.data });
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   function deleteTransaction(id) {
     dispatch({ type: 'DELETE_TRANS', payload: id });
   }
-  function addTransaction(trans) {
-    dispatch({ type: 'ADD_TRANS', payload: trans });
+  async function addTransaction(trans) {
+    try {
+      const res = await axios.post('http://localhost:5000/', trans);
+      dispatch({ type: 'ADD_TRANS', payload: res.data });
+    } catch (err) {
+      console.error(err.message);
+    }
   }
   function clearAll() {
     dispatch({ type: 'CLEAR_ALL' });
@@ -30,6 +46,7 @@ export const GlobalProvider = ({ children }) => {
         deleteTransaction,
         addTransaction,
         clearAll,
+        getAll,
       }}
     >
       {children}

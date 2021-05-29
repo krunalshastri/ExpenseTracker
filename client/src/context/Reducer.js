@@ -1,8 +1,13 @@
 export default (state, action) => {
   switch (action.type) {
+    case 'GET_ALL':
+      return {
+        ...state,
+        transactions: action.payload,
+      };
     case 'ADD_TRANS':
       const addedTransactions = [...state.transactions, action.payload];
-      localStorage.setItem('transactions', JSON.stringify(addedTransactions));
+      // localStorage.setItem('transactions', JSON.stringify(addedTransactions));
       return {
         ...state,
         transactions: addedTransactions,
@@ -11,13 +16,13 @@ export default (state, action) => {
       const deletedTransactions = state.transactions.filter(
         (trans) => trans.id !== action.payload
       );
-      localStorage.setItem('transactions', JSON.stringify(deletedTransactions));
+      // localStorage.setItem('transactions', JSON.stringify(deletedTransactions));
       return {
         ...state,
         transactions: deletedTransactions,
       };
     case 'CLEAR_ALL':
-      localStorage.removeItem('transactions');
+      // localStorage.removeItem('transactions');
       return {
         ...state,
         transactions: [],

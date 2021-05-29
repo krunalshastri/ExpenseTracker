@@ -3,10 +3,11 @@ const dotEnv = require('dotenv').config();
 const mongoose = require('mongoose');
 const { findByIdAndDelete } = require('./Models/transactionModel');
 const Transaction = require('./Models/transactionModel');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 mongoose.connect(process.env.ATLAS_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,7 +31,7 @@ app.post('/', async (req, res) => {
   try {
     const newTrans = new Transaction({ text, amount });
     await newTrans.save();
-    res.json('Transaction Added!');
+    res.json(newTrans);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error!');

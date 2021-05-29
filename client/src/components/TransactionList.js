@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import Transaction from './Transaction';
 
 export const TransactionList = () => {
-  let { transactions, clearAll } = useContext(GlobalContext);
+  let { transactions, clearAll, getAll } = useContext(GlobalContext);
+
+  useEffect(() => {
+    getAll();
+  }, [getAll]);
 
   return (
     <div>

@@ -16,7 +16,7 @@ const Transaction = ({ trans }) => {
           {trans.amount >= 0 && '+'}
           {trans.amount.toFixed(2)}₹
         </span>
-        <button className='delete-btn' onClick={() => handleClick(trans.id)}>
+        <button className='delete-btn' onClick={() => handleClick(trans._id)}>
           x
         </button>
       </li>
