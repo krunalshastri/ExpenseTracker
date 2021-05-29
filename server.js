@@ -41,7 +41,6 @@ app.post('/', async (req, res) => {
 app.delete('/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    console.log(id);
     const transactions = await Transaction.findByIdAndDelete(id);
     res.json(transactions);
   } catch (err) {

@@ -24,8 +24,13 @@ export const GlobalProvider = ({ children }) => {
       console.error(err.message);
     }
   }
-  function deleteTransaction(id) {
-    dispatch({ type: 'DELETE_TRANS', payload: id });
+  async function deleteTransaction(id) {
+    try {
+      const res = await axios.delete(`http://localhost:5000/${id}`);
+      dispatch({ type: 'DELETE_TRANS', payload: res.data._id });
+    } catch (err) {
+      console.error(err.message);
+    }
   }
   async function addTransaction(trans) {
     try {
