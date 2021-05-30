@@ -17,7 +17,7 @@ body {
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
   background-color: #132c33;
-  background-image: url('https://www.transparenttextures.com/patterns/wild-flowers.png');
+  background-image: url('https://www.transparenttextures.com/patterns/argyle.png');
 }
 
 .container {
@@ -198,6 +198,7 @@ input[type='number'] {
   justify-content: center;
   text-align: center;
   color: #fff;
+  font-size: 25px;
 }
 
 @media (max-width: 700px) {
@@ -215,6 +216,6 @@ input[type='number'] {
   }
 
   .welcome {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
