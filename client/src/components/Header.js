@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <div>
-      <h1>Welcome, {name}!! </h1>
+      <h1 style={{ textAlign: 'center' }}>Welcome, {name}!! </h1>
       <div className='logout'>
         <h2>Expense Tracker</h2>
         <button onClick={handleClick}>

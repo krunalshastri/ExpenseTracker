@@ -23,15 +23,26 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <GoogleLogin
-        clientId='794373979304-lbabur918bbqdmpdqmj95riklk0r29r5.apps.googleusercontent.com'
-        buttonText='Login'
-        onSuccess={googleSuccess}
-        onFailure={googleFailure}
-        cookiePolicy='single_host_origin'
-      />
-    </div>
+    <section>
+      <div className='welcome'>
+        <h1>|| Welcome to Expense Tracker || </h1>
+      </div>
+      <div className='login'>
+        <div>
+          <h2>
+            Beware of little expenses. A small leak will sink a great ship.
+          </h2>
+        </div>
+        <GoogleLogin
+          clientId='794373979304-lbabur918bbqdmpdqmj95riklk0r29r5.apps.googleusercontent.com'
+          buttonText='Sign in with Google'
+          onSuccess={googleSuccess}
+          onFailure={googleFailure}
+          cookiePolicy='single_host_origin'
+          theme='dark'
+        />
+      </div>
+    </section>
   );
 };
 

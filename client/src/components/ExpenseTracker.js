@@ -6,7 +6,7 @@ import { IncomeExpenses } from './IncomeExpenses';
 import { TransactionList } from './TransactionList';
 const ExpenseTracker = () => {
   return (
-    <div>
+    <div className='landing'>
       <Header />
       <Balance />
       <IncomeExpenses />
