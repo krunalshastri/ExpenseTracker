@@ -44,6 +44,7 @@ export const GlobalProvider = ({ children }) => {
   async function addTransaction(trans) {
     try {
       const res = await axios.post('http://localhost:5000/api/', trans);
+      console.log(res.data);
       dispatch({ type: 'ADD_TRANS', payload: res.data });
     } catch (err) {
       console.error(err.message);

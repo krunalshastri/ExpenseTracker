@@ -12,10 +12,10 @@ Router.get('/', async (req, res) => {
 });
 
 Router.route('/').post(async (req, res) => {
-  const { text, amount } = req.body;
+  const { text, amount, googleId } = req.body;
 
   try {
-    const newTrans = new Transaction({ text, amount });
+    const newTrans = new Transaction({ text, amount, googleId });
     await newTrans.save();
     res.json(newTrans);
   } catch (err) {

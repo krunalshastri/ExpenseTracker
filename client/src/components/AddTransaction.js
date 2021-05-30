@@ -16,7 +16,10 @@ export const AddTransaction = () => {
     e.preventDefault();
     const id = uuid();
     amount = Number(amount);
-    addTransaction({ id, text, amount });
+    const profile = JSON.parse(localStorage.getItem('profile'));
+    const googleId = profile.profile.googleId;
+    console.log(googleId);
+    addTransaction({ id, text, amount, googleId });
     setText('');
     setAmount('');
   }

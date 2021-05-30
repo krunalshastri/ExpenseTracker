@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 //Schema
 const transactionSchema = mongoose.Schema({
+  googleId: {
+    type: String,
+  },
   text: {
     type: String,
     required: true,
