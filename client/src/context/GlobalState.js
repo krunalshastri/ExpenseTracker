@@ -17,9 +17,17 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   //All actions
-  async function userLogged() {
+  async function login() {
     try {
       dispatch({ type: 'LOGGED_IN' });
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  async function logout() {
+    try {
+      dispatch({ type: 'LOGGED_OUT' });
     } catch (err) {
       console.error(err.message);
     }
@@ -64,7 +72,8 @@ export const GlobalProvider = ({ children }) => {
       value={{
         transactions: state.transactions,
         isLogged: state.isLogged,
-        userLogged,
+        login,
+        logout,
         deleteTransaction,
         addTransaction,
         clearAll,

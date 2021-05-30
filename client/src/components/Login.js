@@ -4,7 +4,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
 
 const Login = () => {
-  let { userLogged, isLogged } = useContext(GlobalContext);
+  let { login, isLogged } = useContext(GlobalContext);
 
   if (isLogged) {
     return <Redirect to='/expense-tracker' />;
@@ -15,7 +15,7 @@ const Login = () => {
     const profile = res?.profileObj;
     const token = res?.tokenId;
     localStorage.setItem('profile', JSON.stringify({ profile, token }));
-    userLogged();
+    login();
   };
 
   const googleFailure = (error) => {

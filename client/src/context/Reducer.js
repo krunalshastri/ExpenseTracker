@@ -5,32 +5,43 @@ export default (state, action) => {
         ...state,
         isLogged: true,
       };
-    case 'GET_ALL':
+    case 'LOGGED_OUT':
       return {
         ...state,
-        transactions: action.payload,
+        isLogged: false,
+      };
+    case 'GET_ALL':
+      const googleId = JSON.parse(localStorage.getItem('profile')).profile
+        .googleId;
+      const allTransactions = action.payload.filter(
+        (trans) => trans.googleId === googleId && trans
+      );
+      return {
+        ...state,
+        transactions: allTransactions,
+        isLogged: true,
       };
     case 'ADD_TRANS':
       const addedTransactions = [...state.transactions, action.payload];
-      // localStorage.setItem('transactions', JSON.stringify(addedTransactions));
       return {
         ...state,
         transactions: addedTransactions,
+        isLogged: true,
       };
     case 'DELETE_TRANS':
       const remTransactions = state.transactions.filter(
         (trans) => trans._id !== action.payload
       );
-      // localStorage.setItem('transactions', JSON.stringify(deletedTransactions));
       return {
         ...state,
         transactions: remTransactions,
+        isLogged: true,
       };
     case 'CLEAR_ALL':
-      // localStorage.removeItem('transactions');
       return {
         ...state,
         transactions: [],
+        isLogged: true,
       };
     default:
       return state;

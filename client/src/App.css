@@ -168,3 +168,9 @@ input[type='number'] {
     width: 15rem;
   }
 }
+
+.logout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

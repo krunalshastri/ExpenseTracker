@@ -9,6 +9,8 @@ export const TransactionList = () => {
     getAll();
   }, []);
 
+  console.log(transactions);
+
   return (
     <div>
       <div className='clear'>
@@ -16,9 +18,8 @@ export const TransactionList = () => {
         <button onClick={() => clearAll()}>Clear All</button>
       </div>
       <ul id='list' className='list'>
-        {transactions.map((trans) => (
-          <Transaction trans={trans} />
-        ))}
+        {transactions &&
+          transactions.map((trans) => <Transaction trans={trans} />)}
       </ul>
     </div>
   );
