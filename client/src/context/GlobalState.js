@@ -6,6 +6,7 @@ import Reducer from './Reducer';
 //Initial state
 const initialState = {
   transactions: [],
+  isLogged: false,
 };
 
 //create context
@@ -16,6 +17,14 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   //All actions
+  async function userLogged() {
+    try {
+      dispatch({ type: 'LOGGED_IN' });
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   async function getAll() {
     try {
       const res = await axios.get('http://localhost:5000/api/');
@@ -53,6 +62,8 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
+        isLogged: state.isLogged,
+        userLogged,
         deleteTransaction,
         addTransaction,
         clearAll,

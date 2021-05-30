@@ -1,5 +1,10 @@
 export default (state, action) => {
   switch (action.type) {
+    case 'LOGGED_IN':
+      return {
+        ...state,
+        isLogged: true,
+      };
     case 'GET_ALL':
       return {
         ...state,

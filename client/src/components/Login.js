@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
+import { useHistory, Redirect } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalState';
 
 const Login = () => {
+  let { userLogged, isLogged } = useContext(GlobalContext);
+
+  if (isLogged) {
+    return <Redirect to='/expense-tracker' />;
+  }
+
   function responseGoogle(res) {
+    userLogged();
     console.log(res);
     console.log(res.profileObj);
   }
@@ -13,7 +22,7 @@ const Login = () => {
         buttonText='Login'
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
+        cookiePolicy='single_host_origin'
       />
     </div>
   );
