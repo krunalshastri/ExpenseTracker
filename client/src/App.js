@@ -1,21 +1,20 @@
 import { Fragment } from 'react';
 import './App.css';
-import { AddTransaction } from './components/AddTransaction';
-import { Balance } from './components/Balance';
-import { Header } from './components/Header';
-import { IncomeExpenses } from './components/IncomeExpenses';
-import { TransactionList } from './components/TransactionList';
 import { GlobalProvider } from './context/GlobalState';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from './components/Login';
+import ExpenseTracker from './components/ExpenseTracker';
 
 function App() {
   return (
-    <GlobalProvider>
-      <Header />
-      <Balance />
-      <IncomeExpenses />
-      <TransactionList />
-      <AddTransaction />
-    </GlobalProvider>
+    <Router>
+      <GlobalProvider>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/expense-tracker' component={ExpenseTracker} />
+        </Switch>
+      </GlobalProvider>
+    </Router>
   );
 }
 

@@ -17,6 +17,8 @@ export const AddTransaction = () => {
     const id = uuid();
     amount = Number(amount);
     addTransaction({ id, text, amount });
+    setText('');
+    setAmount('');
   }
 
   return (
